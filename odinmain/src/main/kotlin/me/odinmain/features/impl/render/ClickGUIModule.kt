@@ -74,12 +74,8 @@ object ClickGUIModule: Module(
             ${getChatBreak()}
             §d§kOdinOnTopWeLoveOdinLiterallyTheBestModAAAAAAAAAAAAAAAA
             
-            §7Thanks for installing §3Odin ${OdinMain.VERSION}§7!
-
-            §7Use §d§l/od §r§7to access GUI settings.
-            §7Use §d§l/od help §r§7for all of of the commands.
-             
-            §7Join the discord for support and suggestions.
+            §7PLEASE DO NOT USE THIS VERSION. IT IS OUTDATED, AND IS NOT BEING MAINTAINED.
+            
             """.trimIndent(), false)
             mc.thePlayer.addChatMessage(
                 ChatComponentText(" §9https://discord.gg/2nCbC9hkxT")
