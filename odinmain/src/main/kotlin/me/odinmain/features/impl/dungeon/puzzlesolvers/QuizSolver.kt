@@ -19,7 +19,7 @@ object QuizSolver {
     private var triviaAnswers: List<String>? = null
 
     private var triviaOptions: MutableList<TriviaAnswer> = MutableList(3) { TriviaAnswer(null, false) }
-    data class TriviaAnswer(var vec3: Vec3?, var correct: Boolean)
+    private data class TriviaAnswer(var vec3: Vec3?, var correct: Boolean)
 
     init {
         try {
@@ -33,9 +33,10 @@ object QuizSolver {
     }
 
     fun onMessage(msg: String) {
-        if ((msg.startsWith("[STATUE] Oruo the Omniscient: ") && msg.contains("answered Question #") && msg.endsWith("correctly!")) || msg == "[STATUE] Oruo the Omniscient: I bestow upon you all the power of a hundred years!")
-            triviaOptions.forEach { it.correct = false }
-
+        if (msg.startsWith("[STATUE] Oruo the Omniscient: ") && msg.endsWith("correctly!")) {
+            if (msg.contains("answered the final question")) return reset()
+            if (msg.contains("answered Question #")) triviaOptions.forEach { it.correct = false }
+        }
         if (msg.trim().startsWithOneOf("ⓐ", "ⓑ", "ⓒ", ignoreCase = true)) {
             if (triviaAnswers?.any { msg.endsWith(it) } ?: return) {
                 when (msg.trim()[0]) {
