@@ -93,10 +93,4 @@ val devCommand = commodore("oddev") {
 
         writeToClipboard(readmeContent)
     }
-
-    literal("testdrag").runs { drag1: String, drag2: String, clazz: String ->
-        val dragon1 = WitherDragonsEnum.entries.find { it.name.lowercase() == drag1.lowercase() } ?: return@runs modMessage("Couldnt find matching dragon for ${drag1.lowercase()}")
-        val dragon2 = WitherDragonsEnum.entries.find { it.name.lowercase() == drag2.lowercase() }  ?: return@runs modMessage("Couldnt find matching dragon for ${drag2.lowercase()}")
-        modMessage(findPriority(mutableListOf(dragon1, dragon2), DungeonClass.entries.find { it.name.lowercase() == clazz.lowercase() } ?: return@runs modMessage("Couldnt find matching class for $clazz")).name)
-    }
 }

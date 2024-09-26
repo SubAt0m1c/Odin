@@ -10,6 +10,7 @@ import me.odinmain.utils.postAndCatch
 import me.odinmain.utils.render.*
 import me.odinmain.utils.skyblock.PlayerUtils
 import me.odinmain.utils.skyblock.PlayerUtils.windowClick
+import me.odinmain.utils.skyblock.modMessage
 import net.minecraft.client.gui.ScaledResolution
 
 object CustomTermGui {
@@ -55,6 +56,7 @@ abstract class TermGui {
             if (System.currentTimeMillis() - openedTerminalTime < 300) return
             if (GuiEvent.CustomTermGuiClick(it.key, if (button == 0) 3 else 0, button).postAndCatch()) return
             windowClick(it.key, if (button == 0) PlayerUtils.ClickType.Middle else PlayerUtils.ClickType.Right, true)
+            modMessage("CLICKED")
         }
     }
 
