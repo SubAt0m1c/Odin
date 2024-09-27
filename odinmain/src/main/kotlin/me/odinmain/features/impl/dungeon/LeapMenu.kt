@@ -71,8 +71,8 @@ object LeapMenu : Module(
             GlStateManager.enableAlpha()
             scale(1f / scaleFactor,  1f / scaleFactor)
 
-            val displayWidth = Display.getWidth()
-            val displayHeight = Display.getHeight()
+            val displayWidth = mc.displayWidth
+            val displayHeight = mc.displayHeight
             translate(displayWidth / 2f, displayHeight / 2f, 0f)
             scale(size, size, 1f)
             translate(-displayWidth / 2f, -displayHeight / 2f, 0f)
