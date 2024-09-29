@@ -54,7 +54,7 @@ object DragonCheck {
 
     fun dragonLeaveWorld(event: LivingDeathEvent) {
         val entity = event.entity as? EntityDragon ?: return
-        val dragon = WitherDragonsEnum.entries.find {it.entity?.entityId == entity.entityId} ?: return
+        val dragon = WitherDragonsEnum.entries.find { it.entity?.entityId == entity.entityId } ?: return
         dragon.state = WitherDragonState.DEAD
         lastDragonDeath = dragon
 
@@ -91,7 +91,7 @@ object DragonCheck {
         WitherDragonsEnum.entries.forEach { dragon ->
             if (dragon.state != WitherDragonState.SPAWNING) return@forEach
             dragon.timeToSpawn--.coerceAtLeast(0)
-            if (dragon.timesSpawned !in 60..80) return@forEach
+            if (dragon.timeToSpawn != 98) return@forEach
             priorityDragon = findPriority(WitherDragonsEnum.entries.filter { it.state == WitherDragonState.SPAWNING }.toMutableList())
             displaySpawningDragon(priorityDragon)
         }
