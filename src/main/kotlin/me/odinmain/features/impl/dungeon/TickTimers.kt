@@ -1,4 +1,4 @@
-package me.odinmain.features.impl.floor7
+package me.odinmain.features.impl.dungeon
 
 import me.odinmain.events.impl.ServerTickEvent
 import me.odinmain.features.Category
@@ -8,13 +8,14 @@ import me.odinmain.features.settings.impl.BooleanSetting
 import me.odinmain.features.settings.impl.HudSetting
 import me.odinmain.utils.render.Color
 import me.odinmain.utils.render.mcTextAndWidth
+import me.odinmain.utils.skyblock.dungeon.DungeonUtils
 import me.odinmain.utils.toFixed
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 
 object TickTimers : Module(
     name = "Tick Timers",
-    category = Category.FLOOR7,
-    description = "Displays timers for Necron, Goldor, and Storm."
+    category = Category.DUNGEON,
+    description = "Displays timers for Necron, Goldor, Storm, and chest secrets."
 ) {
     private val displayInTicks by BooleanSetting("Display in Ticks", default = false, description = "Display the timers in ticks instead of seconds.")
     private val symbolDisplay: Boolean by BooleanSetting("Display Symbol", default = true, description = "Displays s or t after the timers.")
@@ -44,6 +45,11 @@ object TickTimers : Module(
         if (it)                    mcTextAndWidth(formatTimer(15, 20, "§bPad:"), 1f, 1f, 2, Color.DARK_RED, shadow = true ,center = false) * 2 + 2f to 16f
         else if (padTickTime >= 0) mcTextAndWidth(formatTimer(padTickTime, 20, "§bPad:"), 1f, 1f, 2, Color.DARK_RED, shadow = true ,center = false) * 2 + 2f to 16f
         else 0f to 0f
+    }
+
+    private val chestHud by HudSetting("Chest Hud", 10f, 10f, 1f, false) {
+        if ((!DungeonUtils.inDungeons || DungeonUtils.inBoss) && !it) return@HudSetting 0f to 0f
+        mcTextAndWidth(formatTimer((20 - mc.theWorld.worldTime.toInt() % 20), 20, "§aChests:"), 0, 10, 1, Color.RED, center = false) * 2 + 2f to 16f
     }
 
     private var padTickTime: Int = -1

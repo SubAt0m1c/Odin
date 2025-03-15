@@ -9,7 +9,7 @@ import me.odinmain.features.impl.dungeon.*
 import me.odinmain.features.impl.dungeon.dungeonwaypoints.DungeonWaypoints
 import me.odinmain.features.impl.dungeon.puzzlesolvers.PuzzleSolvers
 import me.odinmain.features.impl.floor7.TerminalSimulator
-import me.odinmain.features.impl.floor7.TickTimers
+import me.odinmain.features.impl.dungeon.TickTimers
 import me.odinmain.features.impl.floor7.WitherDragons
 import me.odinmain.features.impl.floor7.p3.*
 import me.odinmain.features.impl.nether.*
@@ -48,10 +48,10 @@ object ModuleManager {
         // dungeon
         DungeonRequeue, BlessingDisplay, PosMessages, ExtraStats, KeyHighlight, Mimic, TeammatesHighlight,
         TerracottaTimer, BloodCamp, SecretClicked, DungeonWaypoints, LeapMenu, PuzzleSolvers,
-        WarpCooldown, MapInfo, SwapSound,
+        WarpCooldown, MapInfo, SwapSound, TickTimers,
 
         // floor 7
-        TerminalSolver, TerminalTimes, MelodyMessage, TickTimers, InactiveWaypoints, WitherDragons,
+        TerminalSolver, TerminalTimes, MelodyMessage, InactiveWaypoints, WitherDragons,
         TerminalSimulator, TerminalSounds, ArrowAlign,
 
         // render
